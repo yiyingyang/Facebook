@@ -1,12 +1,13 @@
 def addExpression(s, target):
     def dfs(start, end, last, curr, res):
-        if last == target: 
-            if start == end:
-                return ans.append(res)
+        if start == end:
+            if last == target:
+                ans.append(res)
+            return 
         for i in range(start + 1, end + 1):
             if start == 0:
                 dfs(i, end, last + int(s[start:i]), int(s[start:i]), s[start:i])
-            else:
+            elif i == start + 1 or i != start + 1 and s[start] != '0':
                 dfs(i, end, last + int(s[start:i]), int(s[start:i]), res + '+' + s[start:i])
                 dfs(i, end, last - int(s[start:i]), int(s[start:i]), res + '-' + s[start:i])
                 
@@ -19,5 +20,5 @@ def addExpression(s, target):
     return ans
 
 def main():
-    print(addExpression('123456789', 100))
+    print(addExpression('1234560789', 100))
 main()
